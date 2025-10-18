@@ -34,7 +34,7 @@ const Index = () => {
             Please Stand By...
           </h1>
           <div
-            className="mt-4 text-xl md:text-2xl font-serif tracking-widest"
+            className="mt-4 text-l md:text-2xl font-serif tracking-widest"
             style={{ color: 'hsl(var(--muted-foreground))' }}
           >
             ✦ THE SHOW WILL BEGIN SOON. ✦
