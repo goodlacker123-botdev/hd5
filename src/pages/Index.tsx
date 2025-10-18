@@ -37,7 +37,7 @@ const Index = () => {
             className="mt-4 text-xl md:text-2xl font-serif tracking-widest"
             style={{ color: 'hsl(var(--muted-foreground))' }}
           >
-            ✦ THE SHOW IS STARTING SOON. ✦
+            ✦ THE SHOW WILL BEGIN SOON. ✦
           </div>
         </header>
 
