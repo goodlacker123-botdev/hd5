@@ -31,13 +31,13 @@ const Index = () => {
               textShadow: '0 0 40px hsl(var(--accent) / 0.3)',
             }}
           >
-            The Show Begins
+            Please Stand By...
           </h1>
           <div
             className="mt-4 text-xl md:text-2xl font-serif tracking-widest"
             style={{ color: 'hsl(var(--muted-foreground))' }}
           >
-            ✦ COMING SOON ✦
+            ✦ THE SHOW IS STARTING SOON. ✦
           </div>
         </header>
 
@@ -52,7 +52,7 @@ const Index = () => {
             className="text-sm tracking-[0.3em] uppercase font-serif"
             style={{ color: 'hsl(var(--muted-foreground) / 0.6)' }}
           >
-            Curtain Call
+            Dress Rehearsal Complete
           </div>
         </footer>
       </div>
