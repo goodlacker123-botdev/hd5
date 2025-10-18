@@ -122,8 +122,8 @@ const Index = () => {
               }}
               aria-label="Apple Music"
             >
-              <svg className="w-6 h-6" fill="hsl(var(--primary-foreground))" viewBox="0 0 24 24" strokeWidth="1.5" stroke="hsl(var(--primary-foreground))">
-                <path d="M9 18V5l12-2v13M9 18c0 1.657-1.343 3-3 3s-3-1.343-3-3 1.343-3 3-3 3 1.343 3 3zm12-2c0 1.657-1.343 3-3 3s-3-1.343-3-3 1.343-3 3-3 3 1.343 3 3zM9 10l12-2"/>
+              <svg className="w-5 h-5" fill="hsl(var(--primary-foreground))" viewBox="0 0 24 24">
+                <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
               </svg>
             </a>
           </div>
