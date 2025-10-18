@@ -2,9 +2,8 @@ import Countdown from "@/components/Countdown";
 import theaterBg from "@/assets/theater-background.jpg";
 
 const Index = () => {
-  // Set countdown target date (example: 30 days from now)
-  const targetDate = new Date();
-  targetDate.setDate(targetDate.getDate() + 30);
+  // Countdown target: January 31st, 2026 at 5:00 PM Eastern Time
+  const targetDate = new Date('2026-01-31T17:00:00-05:00');
 
   return (
     <div className="min-h-screen relative overflow-hidden">
