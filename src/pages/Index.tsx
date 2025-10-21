@@ -135,7 +135,7 @@ const Index = () => {
             className="text-sm tracking-[0.3em] uppercase font-serif"
             style={{ color: 'hsl(var(--muted-foreground) / 0.6)' }}
           >
-            Dress Rehearsal Complete
+            The Curtain Opens January 31st at 5PM ET    
           </div>
         </footer>
       </div>
