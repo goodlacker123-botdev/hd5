@@ -22,7 +22,7 @@ const Index = () => {
         {/* Header */}
         <header className="py-8 md:py-12 text-center">
           <h1
-            className="text-4xl md:text-6xl lg:text-7xl font-bold font-serif tracking-wider"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold font-serif tracking-wider px-4"
             style={{
               background: 'linear-gradient(135deg, hsl(var(--accent)) 0%, hsl(var(--primary-foreground)) 100%)',
               WebkitBackgroundClip: 'text',
@@ -34,7 +34,7 @@ const Index = () => {
             Please Stand By...
           </h1>
           <div
-            className="mt-4 text-lg md:text-2xl font-serif tracking-widest"
+            className="mt-4 text-base sm:text-lg md:text-xl lg:text-2xl font-serif tracking-widest px-4"
             style={{ color: 'hsl(var(--muted-foreground))' }}
           >
             ✦ THE SHOW WILL BEGIN SOON. ✦
@@ -130,9 +130,9 @@ const Index = () => {
         </main>
 
         {/* Decorative Footer Element */}
-        <footer className="py-6 text-center">
+        <footer className="py-6 text-center px-4">
           <div
-            className="text-sm tracking-[0.3em] uppercase font-serif"
+            className="text-xs sm:text-sm md:text-base tracking-[0.3em] uppercase font-serif"
             style={{ color: 'hsl(var(--muted-foreground) / 0.6)' }}
           >
             The Curtain Opens January 31st at 5PM ET    
