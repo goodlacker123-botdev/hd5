@@ -48,7 +48,7 @@ const Index = () => {
           {/* Social Media Links */}
           <div className="flex gap-4">
             <a
-              href="https://open.spotify.com/user/yourusername"
+              href="https://open.spotify.com/artist/2KkUezJZiTh9ooy5Fuzv3B"
               target="_blank"
               rel="noopener noreferrer"
               className="w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
@@ -64,7 +64,7 @@ const Index = () => {
             </a>
             
             <a
-              href="https://twitter.com/yourhandle"
+              href="x.com/HaydenDavis_off"
               target="_blank"
               rel="noopener noreferrer"
               className="w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
@@ -80,7 +80,7 @@ const Index = () => {
             </a>
             
             <a
-              href="https://instagram.com/yourhandle"
+              href="https://instagram.com/raiden.shotgunn"
               target="_blank"
               rel="noopener noreferrer"
               className="w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
@@ -96,7 +96,7 @@ const Index = () => {
             </a>
             
             <a
-              href="https://youtube.com/yourchannel"
+              href="https://www.youtube.com/channel/UCg-4Ffz_9lDhuW2oG13b8Hw"
               target="_blank"
               rel="noopener noreferrer"
               className="w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
@@ -112,7 +112,7 @@ const Index = () => {
             </a>
             
             <a
-              href="https://tiktok.com/@yourhandle"
+              href="https://www.tiktok.com/@haydendavisoff"
               target="_blank"
               rel="noopener noreferrer"
               className="w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
@@ -128,7 +128,7 @@ const Index = () => {
             </a>
             
             <a
-              href="https://music.apple.com/profile/yourusername"
+              href="https://music.apple.com/us/artist/hayden-davis/1446486188"
               target="_blank"
               rel="noopener noreferrer"
               className="w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
