@@ -1,5 +1,4 @@
 import Countdown from "@/components/Countdown";
-import theaterBg from "@/assets/theater-background.jpg";
 
 const Index = () => {
   // Countdown target: January 31st, 2026 at 5:00 PM Eastern Time
@@ -11,7 +10,7 @@ const Index = () => {
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `url(${theaterBg})`,
+          backgroundImage: `url(/images/theater-background.jpg)`,
         }}
       >
         <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/80 to-background/90" />
