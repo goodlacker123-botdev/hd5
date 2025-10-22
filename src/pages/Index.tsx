@@ -64,7 +64,7 @@ const Index = () => {
             </a>
             
             <a
-              href="x.com/HaydenDavis_off"
+              href="https://x.com/HaydenDavis_off"
               target="_blank"
               rel="noopener noreferrer"
               className="w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
@@ -112,7 +112,7 @@ const Index = () => {
             </a>
             
             <a
-              href="https://www.tiktok.com/@haydendavisoff"
+              href="https://tiktok.com/@haydendavisoff"
               target="_blank"
               rel="noopener noreferrer"
               className="w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
