@@ -127,7 +127,7 @@ const Index = () => {
             </a>
             
             <a
-              href="https://www.facebook.com/haydendavisofficial"
+              href="https://www.facebook.com/haydendavisoff"
               target="_blank"
               rel="noopener noreferrer"
               className="w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
