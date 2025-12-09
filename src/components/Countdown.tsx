@@ -7,7 +7,12 @@ interface TimeLeft {
   seconds: number;
 }
 
-const Countdown = ({ targetDate }: { targetDate: Date }) => {
+interface CountdownProps {
+  targetDate: Date;
+  redirectUrl?: string;
+}
+
+const Countdown = ({ targetDate, redirectUrl }: CountdownProps) => {
   const [timeLeft, setTimeLeft] = useState<TimeLeft>({
     days: 0,
     hours: 0,
@@ -26,6 +31,8 @@ const Countdown = ({ targetDate }: { targetDate: Date }) => {
           minutes: Math.floor((difference / 1000 / 60) % 60),
           seconds: Math.floor((difference / 1000) % 60),
         });
+      } else if (redirectUrl) {
+        window.location.href = redirectUrl;
       }
     };
 
@@ -33,7 +40,7 @@ const Countdown = ({ targetDate }: { targetDate: Date }) => {
     const timer = setInterval(calculateTimeLeft, 1000);
 
     return () => clearInterval(timer);
-  }, [targetDate]);
+  }, [targetDate, redirectUrl]);
 
   return (
     <div className="relative">
