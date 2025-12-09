@@ -45,7 +45,7 @@ const Index = () => {
           <Countdown targetDate={targetDate} redirectUrl="https://open.spotify.com/artist/2KkUezJZiTh9ooy5Fuzv3B" />
           
           {/* Social Media Links */}
-          <div className="flex gap-4">
+          <div className="flex flex-wrap justify-center gap-3 sm:gap-4 max-w-xs sm:max-w-none">
             <a
               href="https://open.spotify.com/artist/2KkUezJZiTh9ooy5Fuzv3B"
               target="_blank"
