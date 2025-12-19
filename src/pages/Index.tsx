@@ -42,7 +42,8 @@ const Index = () => {
 
         {/* Countdown */}
         <main className="flex-1 flex flex-col items-center justify-center px-4 pb-16 gap-8">
-          <Countdown targetDate={targetDate} redirectUrl="https://open.spotify.com/artist/2KkUezJZiTh9ooy5Fuzv3B" />
+          <Countdown targetDate={targetDate} redirectUrl="https://nimble.li/29xqzoym"
+
           
           {/* Social Media Links */}
           <div className="flex flex-wrap justify-center gap-3 sm:gap-4 max-w-xs sm:max-w-none">
