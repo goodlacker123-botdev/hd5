@@ -42,7 +42,7 @@ const Index = () => {
 
         {/* Countdown */}
         <main className="flex-1 flex flex-col items-center justify-center px-4 pb-16 gap-8">
-          <Countdown targetDate={targetDate} redirectUrl="https://nimble.li/29xqzoym"></Countdown>
+          <Countdown targetDate={targetDate} redirectUrl="https://distrokid.com/hyperfollow/haydendavis3/the-death-of-a-star"></Countdown>
 
           
           {/* Social Media Links */}
