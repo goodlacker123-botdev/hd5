@@ -13,7 +13,7 @@ serve(async (req) => {
 
   try {
     // The redirect URL is stored server-side only
-    const redirectUrl = "https://example.com/placeholder";
+    const redirectUrl = "https://distrokid.com/hyperfollow/haydendavis3/talk=of-the-town";
     
     console.log("Returning redirect URL");
     
