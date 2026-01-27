@@ -1,8 +1,8 @@
 import Countdown from "@/components/Countdown";
 
 const Index = () => {
-  // Countdown target: January 31st, 2026 at 5:00 PM Eastern Time
-  const targetDate = new Date('2026-01-21T17:00:00-05:00');
+  // Countdown target: February 11th, 2026 at 5:00 PM Eastern Time
+  const targetDate = new Date('2026-02-11T17:00:00-05:00');
 
   return (
     <div className="min-h-screen relative overflow-hidden">
@@ -42,7 +42,22 @@ const Index = () => {
 
         {/* Countdown */}
         <main className="flex-1 flex flex-col items-center justify-center px-4 pb-16 gap-8">
-          <Countdown targetDate={targetDate} redirectUrl="https://distrokid.com/hyperfollow/haydendavis3/the-death-of-a-star"></Countdown>
+          <Countdown targetDate={targetDate} redirectUrl="https://example.com/placeholder"></Countdown>
+
+          {/* Presave Button */}
+          <a
+            href="https://distrokid.com/hyperfollow/haydendavis3/the-death-of-a-star"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-8 py-4 text-lg font-serif tracking-wider uppercase transition-all duration-300 hover:scale-105 rounded-lg"
+            style={{
+              background: 'linear-gradient(135deg, hsl(var(--theater-red)) 0%, hsl(var(--theater-gold)) 100%)',
+              color: 'hsl(var(--primary-foreground))',
+              boxShadow: '0 4px 20px hsl(var(--theater-red) / 0.4)',
+            }}
+          >
+            Presave The Death of a Star
+          </a>
 
           
           {/* Social Media Links */}
@@ -167,7 +182,7 @@ const Index = () => {
             className="text-xs sm:text-sm md:text-base tracking-[0.3em] uppercase font-serif"
             style={{ color: 'hsl(var(--muted-foreground) / 0.6)' }}
           >
-            The Curtain Opens January 21st at 5PM ET    
+            The Curtain Opens February 11th at 5PM ET
           </div>
         </footer>
       </div>
