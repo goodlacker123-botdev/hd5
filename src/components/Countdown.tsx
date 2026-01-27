@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from "react";
+import { supabase } from "@/integrations/supabase/client";
 
 interface TimeLeft {
   days: number;
@@ -9,10 +10,9 @@ interface TimeLeft {
 
 interface CountdownProps {
   targetDate: Date;
-  redirectUrl?: string;
 }
 
-const Countdown = ({ targetDate, redirectUrl }: CountdownProps) => {
+const Countdown = ({ targetDate }: CountdownProps) => {
   const [timeLeft, setTimeLeft] = useState<TimeLeft>({
     days: 0,
     hours: 0,
@@ -21,6 +21,25 @@ const Countdown = ({ targetDate, redirectUrl }: CountdownProps) => {
   });
   const serverTimeOffset = useRef<number | null>(null);
   const hasFetchedTime = useRef(false);
+  const hasRedirected = useRef(false);
+
+  const handleRedirect = async () => {
+    if (hasRedirected.current) return;
+    hasRedirected.current = true;
+    
+    try {
+      const { data, error } = await supabase.functions.invoke('get-redirect-url');
+      if (error) {
+        console.error('Error fetching redirect URL:', error);
+        return;
+      }
+      if (data?.url) {
+        window.location.href = data.url;
+      }
+    } catch (error) {
+      console.error('Error redirecting:', error);
+    }
+  };
 
   useEffect(() => {
     const fetchServerTime = async () => {
@@ -54,8 +73,8 @@ const Countdown = ({ targetDate, redirectUrl }: CountdownProps) => {
           minutes: Math.floor((difference / 1000 / 60) % 60),
           seconds: Math.floor((difference / 1000) % 60),
         });
-      } else if (redirectUrl) {
-        window.location.href = redirectUrl;
+      } else {
+        handleRedirect();
       }
     };
 
@@ -66,7 +85,7 @@ const Countdown = ({ targetDate, redirectUrl }: CountdownProps) => {
     const timer = setInterval(calculateTimeLeft, 1000);
 
     return () => clearInterval(timer);
-  }, [targetDate, redirectUrl]);
+  }, [targetDate]);
 
   return (
     <div className="relative">

@@ -42,7 +42,7 @@ const Index = () => {
 
         {/* Countdown */}
         <main className="flex-1 flex flex-col items-center justify-center px-4 pb-16 gap-8">
-          <Countdown targetDate={targetDate} redirectUrl="https://example.com/placeholder"></Countdown>
+          <Countdown targetDate={targetDate} />
 
           {/* Presave Button */}
           <a
