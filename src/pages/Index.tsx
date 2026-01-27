@@ -36,7 +36,7 @@ const Index = () => {
             className="mt-4 text-base sm:text-lg md:text-xl lg:text-2xl font-serif tracking-widest px-4"
             style={{ color: 'hsl(var(--muted-foreground))' }}
           >
-            ✦ THE SHOW WILL BEGIN SOON. ✦
+            ✦ ACT I BEGINS SOON. ✦
           </div>
         </header>
 
