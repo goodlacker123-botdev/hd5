@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 interface TimeLeft {
   days: number;
@@ -19,10 +19,33 @@ const Countdown = ({ targetDate, redirectUrl }: CountdownProps) => {
     minutes: 0,
     seconds: 0,
   });
+  const serverTimeOffset = useRef<number | null>(null);
+  const hasFetchedTime = useRef(false);
 
   useEffect(() => {
+    const fetchServerTime = async () => {
+      try {
+        // Use WorldTimeAPI to get accurate server time
+        const response = await fetch('https://worldtimeapi.org/api/timezone/America/New_York');
+        const data = await response.json();
+        const serverTime = new Date(data.datetime).getTime();
+        const localTime = Date.now();
+        // Calculate offset between server time and local time
+        serverTimeOffset.current = serverTime - localTime;
+      } catch (error) {
+        console.warn('Could not fetch server time, falling back to local time');
+        serverTimeOffset.current = 0;
+      }
+      hasFetchedTime.current = true;
+    };
+
     const calculateTimeLeft = () => {
-      const difference = targetDate.getTime() - new Date().getTime();
+      // Only calculate after we've attempted to fetch server time
+      if (!hasFetchedTime.current) return;
+      
+      // Get current time adjusted by server offset
+      const currentTime = Date.now() + (serverTimeOffset.current || 0);
+      const difference = targetDate.getTime() - currentTime;
 
       if (difference > 0) {
         setTimeLeft({
@@ -36,7 +59,10 @@ const Countdown = ({ targetDate, redirectUrl }: CountdownProps) => {
       }
     };
 
-    calculateTimeLeft();
+    fetchServerTime().then(() => {
+      calculateTimeLeft();
+    });
+    
     const timer = setInterval(calculateTimeLeft, 1000);
 
     return () => clearInterval(timer);
