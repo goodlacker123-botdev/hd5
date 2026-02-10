@@ -1,1 +1,4 @@
 project_id = "ifiprzaqxeneydnavyjf"
+
+[functions.get-redirect-url]
+verify_jwt = false
