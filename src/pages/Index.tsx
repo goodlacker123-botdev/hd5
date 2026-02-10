@@ -1,8 +1,57 @@
+import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
+import { supabase } from "@/integrations/supabase/client";
 import Countdown from "@/components/Countdown";
 
 const Index = () => {
-  // Countdown target: February 11th, 2026 at 5:00 PM Eastern Time
-  const targetDate = new Date('2026-02-11T17:00:00-05:00');
+  const [searchParams] = useSearchParams();
+  const [targetDate, setTargetDate] = useState<Date | null>(null);
+  const [siteEnabled, setSiteEnabled] = useState(true);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Check for test mode
+    const testCountdown = searchParams.get("test_countdown");
+    if (testCountdown) {
+      setTargetDate(new Date(testCountdown));
+      setLoading(false);
+      return;
+    }
+
+    // Fetch settings from database
+    const fetchSettings = async () => {
+      const { data } = await supabase
+        .from("site_settings")
+        .select("countdown_target, site_enabled")
+        .limit(1)
+        .maybeSingle();
+      if (data) {
+        setTargetDate(new Date(data.countdown_target));
+        setSiteEnabled(data.site_enabled);
+      } else {
+        // Fallback
+        setTargetDate(new Date('2026-02-11T17:00:00-05:00'));
+      }
+      setLoading(false);
+    };
+    fetchSettings();
+  }, [searchParams]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-background">
+        <p className="text-muted-foreground font-serif">Loading...</p>
+      </div>
+    );
+  }
+
+  if (!siteEnabled) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-background">
+        <p className="text-muted-foreground font-serif text-xl">Coming Soon</p>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen relative overflow-hidden">
@@ -42,7 +91,7 @@ const Index = () => {
 
         {/* Countdown */}
         <main className="flex-1 flex flex-col items-center justify-center px-4 pb-16 gap-8">
-          <Countdown targetDate={targetDate} />
+          {targetDate && <Countdown targetDate={targetDate} />}
 
           {/* Presave Button */}
           <a
@@ -59,7 +108,6 @@ const Index = () => {
             Presave The Death of a Star
           </a>
 
-          
           {/* Social Media Links */}
           <div className="flex flex-wrap justify-center gap-3 sm:gap-4 max-w-xs sm:max-w-none">
             <a
