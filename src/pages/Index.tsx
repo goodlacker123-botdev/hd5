@@ -1,6 +1,6 @@
 import Countdown from "@/components/Countdown";
 
-const targetDate = new Date('2026-02-11T22:00:00Z');
+const targetDate = new Date('2026-02-19T00:00:00Z');
 
 const Index = () => {
   return (
@@ -180,7 +180,7 @@ const Index = () => {
             className="text-xs sm:text-sm md:text-base tracking-[0.3em] uppercase font-serif"
             style={{ color: 'hsl(var(--muted-foreground) / 0.6)' }}
           >
-            The Curtain Opens February 11th at 5PM ET
+            The Curtain Opens February 19th at 12AM ET
           </div>
         </footer>
       </div>
