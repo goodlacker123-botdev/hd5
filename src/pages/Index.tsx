@@ -1,58 +1,8 @@
-import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
-import { supabase } from "@/integrations/supabase/client";
 import Countdown from "@/components/Countdown";
 
+const targetDate = new Date('2026-02-11T22:00:00Z');
+
 const Index = () => {
-  const [searchParams] = useSearchParams();
-  const [targetDate, setTargetDate] = useState<Date | null>(null);
-  const [siteEnabled, setSiteEnabled] = useState(true);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    // Check for test mode
-    const testCountdown = searchParams.get("test_countdown");
-    if (testCountdown) {
-      setTargetDate(new Date(testCountdown));
-      setLoading(false);
-      return;
-    }
-
-    // Fetch settings from database
-    const fetchSettings = async () => {
-      const { data } = await supabase
-        .from("site_settings")
-        .select("countdown_target, site_enabled")
-        .limit(1)
-        .maybeSingle();
-      if (data) {
-        setTargetDate(new Date(data.countdown_target));
-        setSiteEnabled(data.site_enabled);
-      } else {
-        // Fallback
-        setTargetDate(new Date('2026-02-11T17:00:00-05:00'));
-      }
-      setLoading(false);
-    };
-    fetchSettings();
-  }, [searchParams]);
-
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-background">
-        <p className="text-muted-foreground font-serif">Loading...</p>
-      </div>
-    );
-  }
-
-  if (!siteEnabled) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-background">
-        <p className="text-muted-foreground font-serif text-xl">Coming Soon</p>
-      </div>
-    );
-  }
-
   return (
     <div className="min-h-screen relative overflow-hidden">
       {/* Background Image with Overlay */}
