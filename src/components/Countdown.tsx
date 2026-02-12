@@ -31,12 +31,24 @@ const Countdown = ({ targetDate }: CountdownProps) => {
   useEffect(() => {
     const fetchServerTime = async () => {
       try {
-        // Use WorldTimeAPI to get accurate server time
-        const response = await fetch('https://worldtimeapi.org/api/timezone/America/New_York');
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 5000);
+
+        const response = await fetch(
+          'https://worldtimeapi.org/api/timezone/America/New_York',
+          { signal: controller.signal }
+        );
+        clearTimeout(timeoutId);
+
+        if (!response.ok) throw new Error('API request failed');
+
         const data = await response.json();
+        if (!data.datetime) throw new Error('Invalid response format');
+
         const serverTime = new Date(data.datetime).getTime();
+        if (isNaN(serverTime)) throw new Error('Invalid datetime');
+
         const localTime = Date.now();
-        // Calculate offset between server time and local time
         serverTimeOffset.current = serverTime - localTime;
       } catch {
         serverTimeOffset.current = 0;
