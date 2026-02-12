@@ -1,5 +1,4 @@
 import { useEffect, useState, useRef } from "react";
-import { supabase } from "@/integrations/supabase/client";
 
 interface TimeLeft {
   days: number;
@@ -23,22 +22,10 @@ const Countdown = ({ targetDate }: CountdownProps) => {
   const hasFetchedTime = useRef(false);
   const hasRedirected = useRef(false);
 
-  const handleRedirect = async () => {
+  const handleRedirect = () => {
     if (hasRedirected.current) return;
     hasRedirected.current = true;
-    
-    try {
-      const { data, error } = await supabase.functions.invoke('get-redirect-url');
-      if (error) {
-        console.error('Error fetching redirect URL:', error);
-        return;
-      }
-      if (data?.url) {
-        window.location.href = data.url;
-      }
-    } catch (error) {
-      console.error('Error redirecting:', error);
-    }
+    window.location.href = 'https://distrokid.com/hyperfollow/haydendavis3/talk-of-the-town';
   };
 
   useEffect(() => {
