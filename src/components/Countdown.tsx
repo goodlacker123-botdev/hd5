@@ -97,7 +97,7 @@ const Countdown = ({ targetDate }: CountdownProps) => {
         {Object.entries(timeLeft).map(([unit, value]) => (
           <div
             key={unit}
-            className="flex flex-col items-center justify-center p-6 md:p-8 rounded-lg border-2 backdrop-blur-sm"
+            className="flex flex-col items-center justify-center p-6 md:p-8 rounded-lg border-2 backdrop-blur-sm w-[72px] md:w-[140px]"
             style={{
               background: 'hsl(var(--card) / 0.6)',
               borderColor: 'hsl(var(--accent))',

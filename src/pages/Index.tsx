@@ -53,6 +53,7 @@ const Index = () => {
               background: 'linear-gradient(135deg, hsl(var(--theater-red)) 0%, hsl(var(--theater-gold)) 100%)',
               color: 'hsl(var(--primary-foreground))',
               boxShadow: '0 4px 20px hsl(var(--theater-red) / 0.4)',
+              textShadow: '0 2px 8px rgba(0,0,0,0.6)',
             }}
           >
             Presave The Death of a Star
