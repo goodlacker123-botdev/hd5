@@ -40,7 +40,6 @@ const Countdown = ({ targetDate }: CountdownProps) => {
         serverTimeOffset.current = serverTime - localTime;
       } catch {
         serverTimeOffset.current = 0;
-        serverTimeOffset.current = 0;
       }
       hasFetchedTime.current = true;
     };
