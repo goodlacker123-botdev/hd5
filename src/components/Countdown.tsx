@@ -105,8 +105,8 @@ const Countdown = ({ targetDate }: CountdownProps) => {
             }}
           >
             <div
-              className="text-5xl md:text-7xl font-bold font-serif tabular-nums"
-              style={{ color: 'hsl(var(--accent))' }}
+              className="text-5xl md:text-7xl font-bold tabular-nums"
+              style={{ color: 'hsl(var(--accent))', fontFamily: 'Georgia, "Times New Roman", serif' }}
             >
               {String(value).padStart(2, "0")}
             </div>
