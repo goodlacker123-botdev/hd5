@@ -38,8 +38,8 @@ const Countdown = ({ targetDate }: CountdownProps) => {
         const localTime = Date.now();
         // Calculate offset between server time and local time
         serverTimeOffset.current = serverTime - localTime;
-      } catch (error) {
-        console.warn('Could not fetch server time, falling back to local time');
+      } catch {
+        serverTimeOffset.current = 0;
         serverTimeOffset.current = 0;
       }
       hasFetchedTime.current = true;
