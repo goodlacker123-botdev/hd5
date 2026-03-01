@@ -25,7 +25,7 @@ const Countdown = ({ targetDate }: CountdownProps) => {
   const handleRedirect = () => {
     if (hasRedirected.current) return;
     hasRedirected.current = true;
-    window.location.href = 'https://distrokid.com/hyperfollow/haydendavis3/talk-of-the-town';
+    window.location.href = 'https://distrokid.com/hyperfollow/haydendavis3/the-death-of-a-star';
   };
 
   useEffect(() => {
