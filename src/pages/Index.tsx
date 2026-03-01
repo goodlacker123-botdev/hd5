@@ -1,6 +1,6 @@
 import Countdown from "@/components/Countdown";
 
-const targetDate = new Date('2026-02-19T00:00:00-05:00');
+const targetDate = new Date('2026-03-13T00:00:00-05:00');
 
 const Index = () => {
   return (
@@ -35,13 +35,29 @@ const Index = () => {
             className="mt-4 text-base sm:text-lg md:text-xl lg:text-2xl font-serif tracking-widest px-4"
             style={{ color: 'hsl(var(--muted-foreground))' }}
           >
-            ✦ ACT I BEGINS SOON. ✦
+            ✦ LET THE SHOW BEGIN ✦
           </div>
         </header>
 
         {/* Countdown */}
         <main className="flex-1 flex flex-col items-center justify-center px-4 pb-16 gap-8">
           {targetDate && <Countdown targetDate={targetDate} />}
+
+          {/* Stream Button */}
+          <a
+            href="https://distrokid.com/hyperfollow/haydendavis3/talk-of-the-town"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-8 py-4 text-lg font-serif tracking-wider uppercase transition-all duration-300 hover:scale-105 rounded-lg"
+            style={{
+              background: 'linear-gradient(135deg, hsl(var(--theater-red)) 0%, hsl(var(--theater-gold)) 100%)',
+              color: 'hsl(var(--primary-foreground))',
+              boxShadow: '0 4px 20px hsl(var(--theater-red) / 0.4)',
+              textShadow: '0 2px 8px rgba(0,0,0,0.6)',
+            }}
+          >
+            Stream Talk of the Town
+          </a>
 
           {/* Presave Button */}
           <a
@@ -181,7 +197,7 @@ const Index = () => {
             className="text-xs sm:text-sm md:text-base tracking-[0.3em] uppercase font-serif"
             style={{ color: 'hsl(var(--muted-foreground) / 0.6)' }}
           >
-            The Curtain Opens February 19th at 12AM ET
+            The Curtain Opens March 13th at 12AM ET
           </div>
         </footer>
       </div>
