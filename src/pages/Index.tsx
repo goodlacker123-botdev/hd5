@@ -1,6 +1,6 @@
 import Countdown from "@/components/Countdown";
 
-const targetDate = new Date('2026-03-13T00:00:00-05:00');
+const targetDate = new Date('2026-03-13T00:00:00-04:00');
 
 const Index = () => {
   return (
