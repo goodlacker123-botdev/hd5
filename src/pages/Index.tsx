@@ -54,7 +54,7 @@ const Index = () => {
 
         {/* Countdown */}
         <main className="flex-1 flex flex-col items-center justify-center px-4 pb-16 gap-8">
-          {targetDate && <Countdown targetDate={targetDate} />}
+          {targetDate && <Countdown targetDate={targetDate} onComplete={handleCountdownComplete} />}
 
           {/* Stream Button */}
           <a
