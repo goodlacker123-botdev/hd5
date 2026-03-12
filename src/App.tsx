@@ -17,6 +17,7 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/curtain-preview" element={<CurtainPreview />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
