@@ -1,34 +1,24 @@
 
 
-## Remove Admin Dashboard and Auth System
+## Accessing `/curtain-preview` on Netlify
 
-Strip out all admin, login, and authentication code while keeping the corrected redirect URL hardcoded in the backend function.
+Since this is a single-page app using React Router, navigating directly to `/curtain-preview` will return a 404 because the server doesn't know about client-side routes.
 
-### Changes
+### Netlify Fix
 
-**Remove files:**
-- `src/pages/Login.tsx`
-- `src/pages/Admin.tsx`
-- `src/hooks/useAuth.tsx`
+Create a `public/_redirects` file with:
 
-**Edit files:**
+```
+/*    /index.html   200
+```
 
-1. **`src/App.tsx`** - Remove imports for Login, Admin, and AuthProvider. Remove `/login` and `/admin` routes.
+This tells Netlify to serve `index.html` for all routes, letting React Router handle them.
 
-2. **`supabase/functions/get-redirect-url/index.ts`** - Replace database lookup with hardcoded URL: `https://distrokid.com/hyperfollow/haydendavis3/talk-of-the-town`
+### GitHub Pages
 
-3. **`src/pages/Index.tsx`** - Remove database fetch for `site_settings`. Hardcode the countdown target date (`2026-02-11T22:00:00Z`) and remove the `site_enabled` / test mode logic.
+GitHub Pages doesn't natively support SPA routing. If you're using Netlify as your primary host, the `_redirects` file is all you need. If you also deploy to GitHub Pages, you'd need a 404.html hack (copy index.html as 404.html), but Netlify is the cleaner solution.
 
-4. **`src/components/Countdown.tsx`** - No changes needed (it already just takes a `targetDate` prop and calls the edge function on completion).
+### Implementation
 
-**Database cleanup:**
-- Drop tables: `site_settings`, `user_roles`, `profiles`
-- Drop function: `has_role`
-- Drop function: `handle_new_user`
-- Drop type: `app_role`
-
-### What stays
-- The edge function endpoint (with the corrected hardcoded URL)
-- The Countdown component and redirect-on-zero behavior
-- All frontend visuals and social links
+One file to create: `public/_redirects` with the single redirect rule.
 
