@@ -77,7 +77,7 @@ const Countdown = ({ targetDate, onComplete }: CountdownProps) => {
           seconds: Math.floor((difference / 1000) % 60),
         });
       } else {
-        handleRedirect();
+        handleComplete();
       }
     };
 
