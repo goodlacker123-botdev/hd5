@@ -9,9 +9,10 @@ interface TimeLeft {
 
 interface CountdownProps {
   targetDate: Date;
+  onComplete?: () => void;
 }
 
-const Countdown = ({ targetDate }: CountdownProps) => {
+const Countdown = ({ targetDate, onComplete }: CountdownProps) => {
   const [timeLeft, setTimeLeft] = useState<TimeLeft>({
     days: 0,
     hours: 0,
