@@ -23,10 +23,14 @@ const Countdown = ({ targetDate, onComplete }: CountdownProps) => {
   const hasFetchedTime = useRef(false);
   const hasRedirected = useRef(false);
 
-  const handleRedirect = () => {
+  const handleComplete = () => {
     if (hasRedirected.current) return;
     hasRedirected.current = true;
-    window.location.href = 'https://distrokid.com/hyperfollow/haydendavis3/the-death-of-a-star';
+    if (onComplete) {
+      onComplete();
+    } else {
+      window.location.href = 'https://distrokid.com/hyperfollow/haydendavis3/the-death-of-a-star';
+    }
   };
 
   useEffect(() => {
