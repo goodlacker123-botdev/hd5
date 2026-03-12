@@ -1,10 +1,23 @@
+import { useState, useCallback } from "react";
 import Countdown from "@/components/Countdown";
+import CurtainReveal from "@/components/CurtainReveal";
 
 const targetDate = new Date('2026-03-13T00:00:00-04:00');
 
 const Index = () => {
+  const [showCurtain, setShowCurtain] = useState(false);
+
+  const handleCountdownComplete = useCallback(() => {
+    setShowCurtain(true);
+  }, []);
+
+  const handleCurtainComplete = useCallback(() => {
+    window.location.href = 'https://distrokid.com/hyperfollow/haydendavis3/the-death-of-a-star';
+  }, []);
+
   return (
     <div className="min-h-screen relative overflow-hidden">
+      {showCurtain && <CurtainReveal onComplete={handleCurtainComplete} />}
       {/* Background Image with Overlay */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -41,7 +54,7 @@ const Index = () => {
 
         {/* Countdown */}
         <main className="flex-1 flex flex-col items-center justify-center px-4 pb-16 gap-8">
-          {targetDate && <Countdown targetDate={targetDate} />}
+          {targetDate && <Countdown targetDate={targetDate} onComplete={handleCountdownComplete} />}
 
           {/* Stream Button */}
           <a
