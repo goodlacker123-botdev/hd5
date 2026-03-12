@@ -1,4 +1,6 @@
+import { useState, useCallback } from "react";
 import Countdown from "@/components/Countdown";
+import CurtainReveal from "@/components/CurtainReveal";
 
 const targetDate = new Date('2026-03-13T00:00:00-04:00');
 
