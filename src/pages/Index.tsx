@@ -2,7 +2,10 @@ import { useState, useCallback } from "react";
 import Countdown from "@/components/Countdown";
 import CurtainReveal from "@/components/CurtainReveal";
 
-const targetDate = new Date('2026-03-13T00:00:00-04:00');
+const targetDate = new Date('2026-04-24T00:00:00-04:00');
+
+// TODO: replace with real YouTube link
+const FALL_FROM_FAME_VISUALIZER_URL = 'https://www.youtube.com/';
 
 const Index = () => {
   const [showCurtain, setShowCurtain] = useState(false);
@@ -12,7 +15,7 @@ const Index = () => {
   }, []);
 
   const handleCurtainComplete = useCallback(() => {
-    window.location.href = 'https://distrokid.com/hyperfollow/haydendavis3/the-death-of-a-star';
+    window.location.href = FALL_FROM_FAME_VISUALIZER_URL;
   }, []);
 
   return (
@@ -42,13 +45,13 @@ const Index = () => {
               textShadow: '0 0 40px hsl(var(--accent) / 0.3)',
             }}
           >
-            Please Stand By...
+            The Show Continues...
           </h1>
           <div
             className="mt-4 text-base sm:text-lg md:text-xl lg:text-2xl font-serif tracking-widest px-4"
             style={{ color: 'hsl(var(--muted-foreground))' }}
           >
-            ✦ LET THE SHOW BEGIN ✦
+            ✦ INTERMISSION ENDING SOON ✦
           </div>
         </header>
 
@@ -85,7 +88,7 @@ const Index = () => {
               textShadow: '0 2px 8px rgba(0,0,0,0.6)',
             }}
           >
-            Presave The Death of a Star
+            Stream The Death of a Star
           </a>
 
           {/* Social Media Links */}
@@ -210,7 +213,7 @@ const Index = () => {
             className="text-xs sm:text-sm md:text-base tracking-[0.3em] uppercase font-serif"
             style={{ color: 'hsl(var(--muted-foreground) / 0.6)' }}
           >
-            The Curtain Opens March 13th at 12AM ET
+            Intermission Ends April 24th at 12AM ET
           </div>
         </footer>
       </div>
