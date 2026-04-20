@@ -1,6 +1,7 @@
 import { useState, useCallback } from "react";
 import Countdown from "@/components/Countdown";
 import CurtainReveal from "@/components/CurtainReveal";
+import CurtainIntro from "@/components/CurtainIntro";
 
 const targetDate = new Date('2026-04-24T00:00:00-04:00');
 
@@ -9,6 +10,7 @@ const FALL_FROM_FAME_VISUALIZER_URL = 'https://www.youtube.com/';
 
 const Index = () => {
   const [showCurtain, setShowCurtain] = useState(false);
+  const [introDone, setIntroDone] = useState(false);
 
   const handleCountdownComplete = useCallback(() => {
     setShowCurtain(true);
@@ -18,8 +20,13 @@ const Index = () => {
     window.location.href = FALL_FROM_FAME_VISUALIZER_URL;
   }, []);
 
+  const handleIntroComplete = useCallback(() => {
+    setIntroDone(true);
+  }, []);
+
   return (
     <div className="min-h-screen relative overflow-hidden">
+      {!introDone && <CurtainIntro onComplete={handleIntroComplete} />}
       {showCurtain && <CurtainReveal onComplete={handleCurtainComplete} />}
       {/* Background Image with Overlay */}
       <div
