@@ -1,34 +1,23 @@
+## Tease Fall From Fame Visualizer with New Countdown
 
+Bring the countdown back on the homepage to tease the upcoming "Fall From Fame" visualizer, ending Friday April 24, 2026 at midnight Eastern Time. Reuse the existing curtain reveal, then redirect to the YouTube visualizer (placeholder URL for now).
 
-## Remove Admin Dashboard and Auth System
+### What changes on the page
 
-Strip out all admin, login, and authentication code while keeping the corrected redirect URL hardcoded in the backend function.
+- **Headline**: "The Show Continues..."
+- **Subtitle**: "✦ INTERMISSION ENDING SOON ✦"
+- **Footer**: "Intermission Ends April 24th at 12AM ET"
+- **Countdown**: Reappears, targeting Apr 24, 2026 00:00 ET. Since April 24 is after the DST transition (Mar 8, 2026), the timestamp uses the EDT offset `-04:00` to land exactly at midnight Eastern.
+- **Buttons**: Keep the existing "Stream Talk of the Town" and "Presave The Death of a Star" buttons unchanged except change the text "Presave The Death of a Star"  to "Stream The Death of a Star" . No new button until the visualizer releases.
+- **Curtain reveal**: Unchanged animation. After the curtain finishes, the page redirects to the Fall From Fame visualizer URL (placeholder constant for you to fill in later).
+- **Curtain reveal text**: Stays as "Let the show begin..." (matches the theatrical theme; let me know if you'd like it changed for this tease).
 
-### Changes
+### Files touched
 
-**Remove files:**
-- `src/pages/Login.tsx`
-- `src/pages/Admin.tsx`
-- `src/hooks/useAuth.tsx`
+- `**src/pages/Index.tsx**` — Update `targetDate` to `new Date('2026-04-24T00:00:00-04:00')`. Replace headline/subtitle/footer copy. Add a `FALL_FROM_FAME_VISUALIZER_URL` constant near the top with a clear `// TODO: replace with real YouTube link` placeholder, and use it inside `handleCurtainComplete` instead of the Death of a Star link.
 
-**Edit files:**
+No other files need to change. The curtain component, preview route, Netlify redirects, and existing buttons all stay as they are.
 
-1. **`src/App.tsx`** - Remove imports for Login, Admin, and AuthProvider. Remove `/login` and `/admin` routes.
+### After you provide the visualizer URL
 
-2. **`supabase/functions/get-redirect-url/index.ts`** - Replace database lookup with hardcoded URL: `https://distrokid.com/hyperfollow/haydendavis3/talk-of-the-town`
-
-3. **`src/pages/Index.tsx`** - Remove database fetch for `site_settings`. Hardcode the countdown target date (`2026-02-11T22:00:00Z`) and remove the `site_enabled` / test mode logic.
-
-4. **`src/components/Countdown.tsx`** - No changes needed (it already just takes a `targetDate` prop and calls the edge function on completion).
-
-**Database cleanup:**
-- Drop tables: `site_settings`, `user_roles`, `profiles`
-- Drop function: `has_role`
-- Drop function: `handle_new_user`
-- Drop type: `app_role`
-
-### What stays
-- The edge function endpoint (with the corrected hardcoded URL)
-- The Countdown component and redirect-on-zero behavior
-- All frontend visuals and social links
-
+Just edit the one constant at the top of `src/pages/Index.tsx` — no other changes required.
