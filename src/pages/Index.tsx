@@ -6,7 +6,7 @@ import CurtainIntro from "@/components/CurtainIntro";
 const targetDate = new Date('2026-04-24T00:00:00-04:00');
 
 // TODO: replace with real YouTube link
-const FALL_FROM_FAME_VISUALIZER_URL = 'https://www.youtube.com/';
+const VIS_URL = 'https://www.youtube.com/';
 
 const Index = () => {
   const [showCurtain, setShowCurtain] = useState(false);
@@ -17,7 +17,7 @@ const Index = () => {
   }, []);
 
   const handleCurtainComplete = useCallback(() => {
-    window.location.href = FALL_FROM_FAME_VISUALIZER_URL;
+    window.location.href = VIS_URL;
   }, []);
 
   const handleIntroComplete = useCallback(() => {
