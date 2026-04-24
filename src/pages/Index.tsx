@@ -5,8 +5,7 @@ import CurtainIntro from "@/components/CurtainIntro";
 
 const targetDate = new Date('2026-04-24T00:00:00-04:00');
 
-// TODO: replace with real YouTube link
-const VIS_URL = 'https://www.youtube.com/';
+const VIS_URL = 'https://youtu.be/V_0mVSO4faM';
 
 const Index = () => {
   const [showCurtain, setShowCurtain] = useState(false);
