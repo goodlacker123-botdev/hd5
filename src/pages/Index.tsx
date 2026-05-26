@@ -22,13 +22,16 @@ const Index = () => {
     <div className="min-h-screen relative overflow-hidden">
       {showCurtain && <CurtainReveal onComplete={handleCurtainComplete} />}
 
-      {/* Background Image with Overlay */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: `url(/images/theater-background.jpg)`,
-        }}
-      >
+      {/* Background Video with Overlay */}
+      <div className="absolute inset-0">
+        <video
+          src="/videos/intermission.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+        />
         <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/80 to-background/90" />
       </div>
 
