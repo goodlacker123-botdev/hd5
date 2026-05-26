@@ -1,7 +1,6 @@
 import { useState, useCallback } from "react";
 import Countdown from "@/components/Countdown";
 import CurtainReveal from "@/components/CurtainReveal";
-import CurtainIntro from "@/components/CurtainIntro";
 
 const targetDate = new Date('2026-06-26T00:00:00-04:00');
 
@@ -10,7 +9,6 @@ const VIS_URL = 'https://youtu.be/PLACEHOLDER';
 
 const Index = () => {
   const [showCurtain, setShowCurtain] = useState(false);
-  const [introDone, setIntroDone] = useState(false);
 
   const handleCountdownComplete = useCallback(() => {
     setShowCurtain(true);
@@ -20,14 +18,10 @@ const Index = () => {
     window.location.href = VIS_URL;
   }, []);
 
-  const handleIntroComplete = useCallback(() => {
-    setIntroDone(true);
-  }, []);
-
   return (
     <div className="min-h-screen relative overflow-hidden">
-      {!introDone && <CurtainIntro onComplete={handleIntroComplete} />}
       {showCurtain && <CurtainReveal onComplete={handleCurtainComplete} />}
+
       {/* Background Image with Overlay */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -52,7 +46,7 @@ const Index = () => {
               textShadow: '0 0 40px hsl(var(--accent) / 0.3)',
             }}
           >
-            The Star is Falling...
+            A New Star Awaits...
           </h1>
           <div
             className="mt-4 text-base sm:text-lg md:text-xl lg:text-2xl font-serif tracking-widest px-4"
@@ -84,7 +78,7 @@ const Index = () => {
 
           {/* Stream Fall From Fame */}
           <a
-            href="https://distrokid.com/hyperfollow/haydendavis3/fall-from-fame"
+            href="https://youtu.be/V_0mVSO4faM?si=t3Y4Sh7P6ust6jAD"
             target="_blank"
             rel="noopener noreferrer"
             className="px-8 py-4 text-lg font-serif tracking-wider uppercase transition-all duration-300 hover:scale-105 rounded-lg"
@@ -111,7 +105,7 @@ const Index = () => {
               textShadow: '0 2px 8px rgba(0,0,0,0.6)',
             }}
           >
-            Stream The Death of a Star
+            Stream The Death of a Star (album)
           </a>
 
           {/* Social Media Links */}
