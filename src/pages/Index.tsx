@@ -46,7 +46,7 @@ const Index = () => {
               textShadow: '0 0 40px hsl(var(--accent) / 0.3)',
             }}
           >
-            The Final Act is Almost Here.
+            The Spotlight Has a Price...
           </h1>
           <div
             className="mt-4 text-base sm:text-lg md:text-xl lg:text-2xl font-serif tracking-widest px-4"
