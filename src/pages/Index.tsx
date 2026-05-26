@@ -82,7 +82,23 @@ const Index = () => {
             Stream Talk of the Town
           </a>
 
-          {/* Presave Button */}
+          {/* Stream Fall From Fame */}
+          <a
+            href="https://distrokid.com/hyperfollow/haydendavis3/fall-from-fame"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-8 py-4 text-lg font-serif tracking-wider uppercase transition-all duration-300 hover:scale-105 rounded-lg"
+            style={{
+              background: 'linear-gradient(135deg, hsl(var(--theater-red)) 0%, hsl(var(--theater-gold)) 100%)',
+              color: 'hsl(var(--primary-foreground))',
+              boxShadow: '0 4px 20px hsl(var(--theater-red) / 0.4)',
+              textShadow: '0 2px 8px rgba(0,0,0,0.6)',
+            }}
+          >
+            Stream Fall From Fame
+          </a>
+
+          {/* Stream The Death of a Star */}
           <a
             href="https://distrokid.com/hyperfollow/haydendavis3/the-death-of-a-star"
             target="_blank"
