@@ -105,7 +105,7 @@ const Index = () => {
               textShadow: '0 2px 8px rgba(0,0,0,0.6)',
             }}
           >
-            Stream The Death of a Star
+            Stream The Death of a Star (album)
           </a>
 
           {/* Social Media Links */}
