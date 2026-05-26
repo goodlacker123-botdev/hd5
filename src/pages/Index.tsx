@@ -1,7 +1,6 @@
 import { useState, useCallback } from "react";
 import Countdown from "@/components/Countdown";
 import CurtainReveal from "@/components/CurtainReveal";
-import CurtainIntro from "@/components/CurtainIntro";
 
 const targetDate = new Date('2026-06-26T00:00:00-04:00');
 
@@ -10,7 +9,6 @@ const VIS_URL = 'https://youtu.be/PLACEHOLDER';
 
 const Index = () => {
   const [showCurtain, setShowCurtain] = useState(false);
-  const [introDone, setIntroDone] = useState(false);
 
   const handleCountdownComplete = useCallback(() => {
     setShowCurtain(true);
@@ -20,14 +18,10 @@ const Index = () => {
     window.location.href = VIS_URL;
   }, []);
 
-  const handleIntroComplete = useCallback(() => {
-    setIntroDone(true);
-  }, []);
-
   return (
     <div className="min-h-screen relative overflow-hidden">
-      {!introDone && <CurtainIntro onComplete={handleIntroComplete} />}
       {showCurtain && <CurtainReveal onComplete={handleCurtainComplete} />}
+
       {/* Background Image with Overlay */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
