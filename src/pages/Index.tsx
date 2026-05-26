@@ -236,7 +236,7 @@ const Index = () => {
             className="text-xs sm:text-sm md:text-base tracking-[0.3em] uppercase font-serif"
             style={{ color: 'hsl(var(--muted-foreground) / 0.6)' }}
           >
-            Intermission Ends April 24th at 12AM ET
+            Intermission Ends June 26th at 12AM ET
           </div>
         </footer>
       </div>
