@@ -3,9 +3,10 @@ import Countdown from "@/components/Countdown";
 import CurtainReveal from "@/components/CurtainReveal";
 import CurtainIntro from "@/components/CurtainIntro";
 
-const targetDate = new Date('2026-04-24T00:00:00-04:00');
+const targetDate = new Date('2026-06-26T00:00:00-04:00');
 
-const VIS_URL = 'https://youtu.be/V_0mVSO4faM';
+// TODO: replace with real YouTube link for The Death of a Star visualizer
+const VIS_URL = 'https://youtu.be/PLACEHOLDER';
 
 const Index = () => {
   const [showCurtain, setShowCurtain] = useState(false);
@@ -51,7 +52,7 @@ const Index = () => {
               textShadow: '0 0 40px hsl(var(--accent) / 0.3)',
             }}
           >
-            The Show Continues...
+            The Star is Falling...
           </h1>
           <div
             className="mt-4 text-base sm:text-lg md:text-xl lg:text-2xl font-serif tracking-widest px-4"
@@ -81,7 +82,23 @@ const Index = () => {
             Stream Talk of the Town
           </a>
 
-          {/* Presave Button */}
+          {/* Stream Fall From Fame */}
+          <a
+            href="https://distrokid.com/hyperfollow/haydendavis3/fall-from-fame"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-8 py-4 text-lg font-serif tracking-wider uppercase transition-all duration-300 hover:scale-105 rounded-lg"
+            style={{
+              background: 'linear-gradient(135deg, hsl(var(--theater-red)) 0%, hsl(var(--theater-gold)) 100%)',
+              color: 'hsl(var(--primary-foreground))',
+              boxShadow: '0 4px 20px hsl(var(--theater-red) / 0.4)',
+              textShadow: '0 2px 8px rgba(0,0,0,0.6)',
+            }}
+          >
+            Stream Fall From Fame
+          </a>
+
+          {/* Stream The Death of a Star */}
           <a
             href="https://distrokid.com/hyperfollow/haydendavis3/the-death-of-a-star"
             target="_blank"
@@ -219,7 +236,7 @@ const Index = () => {
             className="text-xs sm:text-sm md:text-base tracking-[0.3em] uppercase font-serif"
             style={{ color: 'hsl(var(--muted-foreground) / 0.6)' }}
           >
-            Intermission Ends April 24th at 12AM ET
+            Intermission Ends June 26th at 12AM ET
           </div>
         </footer>
       </div>
