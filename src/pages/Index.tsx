@@ -3,9 +3,10 @@ import Countdown from "@/components/Countdown";
 import CurtainReveal from "@/components/CurtainReveal";
 import CurtainIntro from "@/components/CurtainIntro";
 
-const targetDate = new Date('2026-04-24T00:00:00-04:00');
+const targetDate = new Date('2026-06-26T00:00:00-04:00');
 
-const VIS_URL = 'https://youtu.be/V_0mVSO4faM';
+// TODO: replace with real YouTube link for The Death of a Star visualizer
+const VIS_URL = 'https://youtu.be/PLACEHOLDER';
 
 const Index = () => {
   const [showCurtain, setShowCurtain] = useState(false);
