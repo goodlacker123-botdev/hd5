@@ -14,7 +14,39 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      countdown_state: {
+        Row: {
+          effective_target: string
+          floor_seconds: number
+          id: number
+          like_count: number
+          original_target: string
+          seconds_per_like: number
+          updated_at: string
+          youtube_video_id: string
+        }
+        Insert: {
+          effective_target?: string
+          floor_seconds?: number
+          id?: number
+          like_count?: number
+          original_target?: string
+          seconds_per_like?: number
+          updated_at?: string
+          youtube_video_id?: string
+        }
+        Update: {
+          effective_target?: string
+          floor_seconds?: number
+          id?: number
+          like_count?: number
+          original_target?: string
+          seconds_per_like?: number
+          updated_at?: string
+          youtube_video_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
