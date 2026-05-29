@@ -17,6 +17,8 @@ const Index = () => {
   const [originalTarget, setOriginalTarget] = useState<Date>(FALLBACK_TARGET);
 
   useEffect(() => {
+    if (!LIKE_DRIVEN_COUNTDOWN_ENABLED) return;
+
     const applyRow = (row: any) => {
       if (!row) return;
       if (row.effective_target) setTargetDate(new Date(row.effective_target));
