@@ -105,36 +105,29 @@ const Index = () => {
         <main className="flex-1 flex flex-col items-center justify-center px-4 pb-16 gap-8">
           {targetDate && <Countdown targetDate={targetDate} onComplete={handleCountdownComplete} />}
 
-          {/* Like-driven progress */}
-          <div
-            className="text-center font-serif px-6 py-4 rounded-lg backdrop-blur-sm border max-w-2xl"
-            style={{
-              background: 'hsl(var(--card) / 0.5)',
-              borderColor: 'hsl(var(--accent) / 0.4)',
-              color: 'hsl(var(--muted-foreground))',
-            }}
-          >
-            <div className="text-sm md:text-base tracking-wider uppercase mb-2" style={{ color: 'hsl(var(--accent))' }}>
-              ✦ The Audience Decides ✦
+          {/* Like-driven progress (hidden until enabled) */}
+          {LIKE_DRIVEN_COUNTDOWN_ENABLED && (
+            <div
+              className="text-center font-serif px-6 py-4 rounded-lg backdrop-blur-sm border max-w-2xl"
+              style={{
+                background: 'hsl(var(--card) / 0.5)',
+                borderColor: 'hsl(var(--accent) / 0.4)',
+                color: 'hsl(var(--muted-foreground))',
+              }}
+            >
+              <div className="text-sm md:text-base tracking-wider uppercase mb-2" style={{ color: 'hsl(var(--accent))' }}>
+                ✦ The Audience Decides ✦
+              </div>
+              <div className="text-base md:text-lg">
+                <span style={{ color: 'hsl(var(--accent))' }}>❤ {likeCount.toLocaleString()}</span> likes ·{' '}
+                <span style={{ color: 'hsl(var(--accent))' }}>{hoursUnlocked.toLocaleString()} hr</span> unlocked
+              </div>
+              <div className="text-xs md:text-sm mt-2 opacity-75">
+                Every like on the video pulls the curtain 1 hour sooner.
+                {flooredOut && ' (Floor reached — 7 days is the minimum.)'}
+              </div>
             </div>
-            <div className="text-base md:text-lg">
-              <span style={{ color: 'hsl(var(--accent))' }}>❤ {likeCount.toLocaleString()}</span> likes on{' '}
-              <a
-                href="https://youtu.be/V_0mVSO4faM"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline hover:opacity-80"
-              >
-                Fall From Fame
-              </a>{' '}
-              ·{' '}
-              <span style={{ color: 'hsl(var(--accent))' }}>{hoursUnlocked.toLocaleString()} hr</span> unlocked
-            </div>
-            <div className="text-xs md:text-sm mt-2 opacity-75">
-              Every like on the video pulls the curtain 1 hour sooner.
-              {flooredOut && ' (Floor reached — 7 days is the minimum.)'}
-            </div>
-          </div>
+          )}
 
 
           {/* Stream Button */}
