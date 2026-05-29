@@ -1,0 +1,1 @@
+SELECT cron.unschedule('poll-youtube-likes-every-2-min');
