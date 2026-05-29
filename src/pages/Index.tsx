@@ -6,6 +6,10 @@ import { supabase } from "@/integrations/supabase/client";
 const FALLBACK_TARGET = new Date('2026-06-26T00:00:00-04:00');
 const VIS_URL = 'https://youtu.be/PLACEHOLDER';
 
+// Toggle to enable the YouTube-likes-driven countdown.
+// Set to true once the target video is finalized.
+const LIKE_DRIVEN_COUNTDOWN_ENABLED = false;
+
 const Index = () => {
   const [showCurtain, setShowCurtain] = useState(false);
   const [targetDate, setTargetDate] = useState<Date>(FALLBACK_TARGET);
