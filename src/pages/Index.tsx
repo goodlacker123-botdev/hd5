@@ -1,14 +1,50 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import Countdown from "@/components/Countdown";
 import CurtainReveal from "@/components/CurtainReveal";
+import { supabase } from "@/integrations/supabase/client";
 
-const targetDate = new Date('2026-06-26T00:00:00-04:00');
-
-// TODO: replace with real YouTube link for The Death of a Star visualizer
+const FALLBACK_TARGET = new Date('2026-06-26T00:00:00-04:00');
 const VIS_URL = 'https://youtu.be/PLACEHOLDER';
 
 const Index = () => {
   const [showCurtain, setShowCurtain] = useState(false);
+  const [targetDate, setTargetDate] = useState<Date>(FALLBACK_TARGET);
+  const [likeCount, setLikeCount] = useState<number>(0);
+  const [originalTarget, setOriginalTarget] = useState<Date>(FALLBACK_TARGET);
+
+  useEffect(() => {
+    const applyRow = (row: any) => {
+      if (!row) return;
+      if (row.effective_target) setTargetDate(new Date(row.effective_target));
+      if (row.original_target) setOriginalTarget(new Date(row.original_target));
+      if (typeof row.like_count === 'number') setLikeCount(row.like_count);
+    };
+
+    supabase
+      .from('countdown_state')
+      .select('*')
+      .eq('id', 1)
+      .single()
+      .then(({ data }) => applyRow(data));
+
+    const channel = supabase
+      .channel('countdown_state_changes')
+      .on(
+        'postgres_changes',
+        { event: '*', schema: 'public', table: 'countdown_state' },
+        (payload) => applyRow(payload.new)
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, []);
+
+  const hoursUnlocked = likeCount;
+  const originalMs = originalTarget.getTime();
+  const effectiveMs = targetDate.getTime();
+  const flooredOut = effectiveMs > originalMs - hoursUnlocked * 3600 * 1000 + 1000;
 
   const handleCountdownComplete = useCallback(() => {
     setShowCurtain(true);
