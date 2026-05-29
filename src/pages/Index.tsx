@@ -1,14 +1,50 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import Countdown from "@/components/Countdown";
 import CurtainReveal from "@/components/CurtainReveal";
+import { supabase } from "@/integrations/supabase/client";
 
-const targetDate = new Date('2026-06-26T00:00:00-04:00');
-
-// TODO: replace with real YouTube link for The Death of a Star visualizer
+const FALLBACK_TARGET = new Date('2026-06-26T00:00:00-04:00');
 const VIS_URL = 'https://youtu.be/PLACEHOLDER';
 
 const Index = () => {
   const [showCurtain, setShowCurtain] = useState(false);
+  const [targetDate, setTargetDate] = useState<Date>(FALLBACK_TARGET);
+  const [likeCount, setLikeCount] = useState<number>(0);
+  const [originalTarget, setOriginalTarget] = useState<Date>(FALLBACK_TARGET);
+
+  useEffect(() => {
+    const applyRow = (row: any) => {
+      if (!row) return;
+      if (row.effective_target) setTargetDate(new Date(row.effective_target));
+      if (row.original_target) setOriginalTarget(new Date(row.original_target));
+      if (typeof row.like_count === 'number') setLikeCount(row.like_count);
+    };
+
+    supabase
+      .from('countdown_state')
+      .select('*')
+      .eq('id', 1)
+      .single()
+      .then(({ data }) => applyRow(data));
+
+    const channel = supabase
+      .channel('countdown_state_changes')
+      .on(
+        'postgres_changes',
+        { event: '*', schema: 'public', table: 'countdown_state' },
+        (payload) => applyRow(payload.new)
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, []);
+
+  const hoursUnlocked = likeCount;
+  const originalMs = originalTarget.getTime();
+  const effectiveMs = targetDate.getTime();
+  const flooredOut = effectiveMs > originalMs - hoursUnlocked * 3600 * 1000 + 1000;
 
   const handleCountdownComplete = useCallback(() => {
     setShowCurtain(true);
@@ -62,6 +98,38 @@ const Index = () => {
         {/* Countdown */}
         <main className="flex-1 flex flex-col items-center justify-center px-4 pb-16 gap-8">
           {targetDate && <Countdown targetDate={targetDate} onComplete={handleCountdownComplete} />}
+
+          {/* Like-driven progress */}
+          <div
+            className="text-center font-serif px-6 py-4 rounded-lg backdrop-blur-sm border max-w-2xl"
+            style={{
+              background: 'hsl(var(--card) / 0.5)',
+              borderColor: 'hsl(var(--accent) / 0.4)',
+              color: 'hsl(var(--muted-foreground))',
+            }}
+          >
+            <div className="text-sm md:text-base tracking-wider uppercase mb-2" style={{ color: 'hsl(var(--accent))' }}>
+              ✦ The Audience Decides ✦
+            </div>
+            <div className="text-base md:text-lg">
+              <span style={{ color: 'hsl(var(--accent))' }}>❤ {likeCount.toLocaleString()}</span> likes on{' '}
+              <a
+                href="https://youtu.be/V_0mVSO4faM"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline hover:opacity-80"
+              >
+                Fall From Fame
+              </a>{' '}
+              ·{' '}
+              <span style={{ color: 'hsl(var(--accent))' }}>{hoursUnlocked.toLocaleString()} hr</span> unlocked
+            </div>
+            <div className="text-xs md:text-sm mt-2 opacity-75">
+              Every like on the video pulls the curtain 1 hour sooner.
+              {flooredOut && ' (Floor reached — 7 days is the minimum.)'}
+            </div>
+          </div>
+
 
           {/* Stream Button */}
           <a
