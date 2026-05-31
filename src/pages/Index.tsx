@@ -1,23 +1,35 @@
 import { useState, useCallback, useEffect } from "react";
 import Countdown from "@/components/Countdown";
 import CurtainReveal from "@/components/CurtainReveal";
+import ClosedCurtainsBackdrop from "@/components/ClosedCurtainsBackdrop";
 import { supabase } from "@/integrations/supabase/client";
 
 const FALLBACK_TARGET = new Date('2026-06-26T00:00:00-04:00');
 const VIS_URL = 'https://youtu.be/PLACEHOLDER';
 
-// Toggle to enable the YouTube-likes-driven countdown.
-// Set to true once the target video is finalized.
-const LIKE_DRIVEN_COUNTDOWN_ENABLED = false;
+// Like-driven countdown goes live June 1, 2026 at 12:00 AM ET.
+const FEATURE_START = new Date('2026-06-01T00:00:00-04:00');
 
 const Index = () => {
   const [showCurtain, setShowCurtain] = useState(false);
   const [targetDate, setTargetDate] = useState<Date>(FALLBACK_TARGET);
   const [likeCount, setLikeCount] = useState<number>(0);
   const [originalTarget, setOriginalTarget] = useState<Date>(FALLBACK_TARGET);
+  const [likeFeatureLive, setLikeFeatureLive] = useState<boolean>(
+    Date.now() >= FEATURE_START.getTime()
+  );
+
+  // Re-check feature gate every minute so it flips on without a refresh
+  useEffect(() => {
+    if (likeFeatureLive) return;
+    const id = setInterval(() => {
+      if (Date.now() >= FEATURE_START.getTime()) setLikeFeatureLive(true);
+    }, 60_000);
+    return () => clearInterval(id);
+  }, [likeFeatureLive]);
 
   useEffect(() => {
-    if (!LIKE_DRIVEN_COUNTDOWN_ENABLED) return;
+    if (!likeFeatureLive) return;
 
     const applyRow = (row: any) => {
       if (!row) return;
@@ -45,7 +57,7 @@ const Index = () => {
     return () => {
       supabase.removeChannel(channel);
     };
-  }, []);
+  }, [likeFeatureLive]);
 
   const hoursUnlocked = likeCount;
   const originalMs = originalTarget.getTime();
@@ -64,18 +76,12 @@ const Index = () => {
     <div className="min-h-screen relative overflow-hidden">
       {showCurtain && <CurtainReveal onComplete={handleCurtainComplete} />}
 
-      {/* Background Video with Overlay */}
+      {/* Closed-curtain backdrop */}
       <div className="absolute inset-0">
-        <video
-          src="/videos/intermission.mp4"
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/80 to-background/90" />
+        <ClosedCurtainsBackdrop />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background/80" />
       </div>
+
 
       {/* Content */}
       <div className="relative z-10 min-h-screen flex flex-col">
@@ -106,7 +112,7 @@ const Index = () => {
           {targetDate && <Countdown targetDate={targetDate} onComplete={handleCountdownComplete} />}
 
           {/* Like-driven progress (hidden until enabled) */}
-          {LIKE_DRIVEN_COUNTDOWN_ENABLED && (
+          {likeFeatureLive && (
             <div
               className="text-center font-serif px-6 py-4 rounded-lg backdrop-blur-sm border max-w-2xl"
               style={{
