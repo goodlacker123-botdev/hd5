@@ -1,6 +1,7 @@
 import { useState, useCallback, useEffect } from "react";
 import Countdown from "@/components/Countdown";
 import CurtainReveal from "@/components/CurtainReveal";
+import ClosedCurtainsBackdrop from "@/components/ClosedCurtainsBackdrop";
 import { supabase } from "@/integrations/supabase/client";
 
 const FALLBACK_TARGET = new Date('2026-06-26T00:00:00-04:00');
