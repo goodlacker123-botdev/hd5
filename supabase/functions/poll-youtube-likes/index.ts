@@ -1,10 +1,22 @@
 import { corsHeaders } from 'npm:@supabase/supabase-js@2/cors';
 import { createClient } from 'npm:@supabase/supabase-js@2';
 
+// Feature goes live June 1, 2026 at 12:00 AM ET (04:00 UTC).
+const FEATURE_START_MS = Date.UTC(2026, 5, 1, 4, 0, 0);
+
 Deno.serve(async (req) => {
   if (req.method === 'OPTIONS') {
     return new Response('ok', { headers: corsHeaders });
   }
+
+  if (Date.now() < FEATURE_START_MS) {
+    return new Response(
+      JSON.stringify({ success: true, skipped: true, reason: 'Feature not yet active' }),
+      { headers: { ...corsHeaders, 'Content-Type': 'application/json' }, status: 200 }
+    );
+  }
+
+
 
   try {
     const YOUTUBE_API_KEY = Deno.env.get('YOUTUBE_API_KEY');
