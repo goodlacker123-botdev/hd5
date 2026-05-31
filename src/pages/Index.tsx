@@ -111,7 +111,7 @@ const Index = () => {
           {targetDate && <Countdown targetDate={targetDate} onComplete={handleCountdownComplete} />}
 
           {/* Like-driven progress (hidden until enabled) */}
-          {LIKE_DRIVEN_COUNTDOWN_ENABLED && (
+          {likeFeatureLive && (
             <div
               className="text-center font-serif px-6 py-4 rounded-lg backdrop-blur-sm border max-w-2xl"
               style={{
