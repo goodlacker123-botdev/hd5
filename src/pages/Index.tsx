@@ -1,7 +1,6 @@
 import { useState, useCallback, useEffect } from "react";
 import Countdown from "@/components/Countdown";
 import CurtainReveal from "@/components/CurtainReveal";
-import SpotlightBeams from "@/components/SpotlightBeams";
 import closedCurtainsImg from "@/assets/closed-curtains.jpg";
 import { supabase } from "@/integrations/supabase/client";
 
