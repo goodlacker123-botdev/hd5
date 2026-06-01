@@ -129,21 +129,3 @@ All colors MUST be HSL.
   }
 }
 
-/* Animated spotlight beams */
-@keyframes spotlight-sway-left {
-  0%, 100% { transform: rotate(-8deg); }
-  50%      { transform: rotate(6deg); }
-}
-@keyframes spotlight-sway-right {
-  0%, 100% { transform: rotate(8deg); }
-  50%      { transform: rotate(-6deg); }
-}
-@keyframes spotlight-flicker {
-  0%, 100%       { opacity: 0.95; }
-  43%            { opacity: 0.78; }
-  47%            { opacity: 1; }
-  52%            { opacity: 0.82; }
-}
-@media (prefers-reduced-motion: reduce) {
-  [data-spotlight-beam] { animation: none !important; }
-}
