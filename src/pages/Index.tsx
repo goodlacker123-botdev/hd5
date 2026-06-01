@@ -85,7 +85,6 @@ const Index = () => {
           width={1920}
           height={1080}
         />
-        <SpotlightBeams />
         <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background/80" />
       </div>
 
