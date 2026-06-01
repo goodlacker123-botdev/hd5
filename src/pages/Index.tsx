@@ -1,7 +1,7 @@
 import { useState, useCallback, useEffect } from "react";
 import Countdown from "@/components/Countdown";
 import CurtainReveal from "@/components/CurtainReveal";
-import ClosedCurtainsBackdrop from "@/components/ClosedCurtainsBackdrop";
+import closedCurtainsImg from "@/assets/closed-curtains.jpg";
 import { supabase } from "@/integrations/supabase/client";
 
 const FALLBACK_TARGET = new Date('2026-06-26T00:00:00-04:00');
@@ -78,7 +78,13 @@ const Index = () => {
 
       {/* Closed-curtain backdrop */}
       <div className="absolute inset-0">
-        <ClosedCurtainsBackdrop />
+        <img
+          src={closedCurtainsImg}
+          alt="Closed red velvet theater curtains with gold valance"
+          className="absolute inset-0 w-full h-full object-cover"
+          width={1920}
+          height={1080}
+        />
         <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background/80" />
       </div>
 
@@ -130,7 +136,7 @@ const Index = () => {
               </div>
               <div className="text-xs md:text-sm mt-2 opacity-75">
                 Every like on the video pulls the curtain 1 hour sooner.
-                {flooredOut && ' (Floor reached — 7 days is the minimum.)'}
+                {flooredOut && ' (Floor reached — 3 days is the minimum.)'}
               </div>
             </div>
           )}
