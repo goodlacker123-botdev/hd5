@@ -1,7 +1,6 @@
 import { useState, useCallback, useEffect } from "react";
 import Countdown from "@/components/Countdown";
 import CurtainReveal from "@/components/CurtainReveal";
-import SpotlightBeams from "@/components/SpotlightBeams";
 import closedCurtainsImg from "@/assets/closed-curtains.jpg";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -86,7 +85,6 @@ const Index = () => {
           width={1920}
           height={1080}
         />
-        <SpotlightBeams />
         <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background/80" />
       </div>
 
