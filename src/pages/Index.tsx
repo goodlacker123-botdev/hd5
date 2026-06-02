@@ -120,7 +120,7 @@ const Index = () => {
           {/* Like-driven progress (hidden until enabled) */}
           {likeFeatureLive && (
             <a
-              href="https://www.youtube.com/watch?v=V_0mVSO4faM"
+              href="https://youtube.com/shorts/bOhIfi8WMn8"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="The Audience Decides — watch the video on YouTube"
@@ -164,7 +164,7 @@ const Index = () => {
 
           {/* Stream Fall From Fame */}
           <a
-            href="https://youtu.be/V_0mVSO4faM?si=t3Y4Sh7P6ust6jAD"
+            href="https://youtube.com/shorts/bOhIfi8WMn8"
             target="_blank"
             rel="noopener noreferrer"
             className="px-8 py-4 text-lg font-serif tracking-wider uppercase transition-all duration-300 hover:scale-105 rounded-lg"
