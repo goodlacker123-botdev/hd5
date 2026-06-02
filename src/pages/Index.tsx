@@ -316,7 +316,7 @@ const Index = () => {
             className="text-xs sm:text-sm md:text-base tracking-[0.3em] uppercase font-serif"
             style={{ color: 'hsl(var(--muted-foreground) / 0.6)' }}
           >
-            Intermission Ends June 26th at 12AM ET
+            Intermission Ends {targetDate.toLocaleString('en-US', { timeZone: 'America/New_York', month: 'long', day: 'numeric' })} at {targetDate.toLocaleString('en-US', { timeZone: 'America/New_York', hour: 'numeric', minute: '2-digit', hour12: true }).replace(' ', '')} ET
           </div>
         </footer>
       </div>
