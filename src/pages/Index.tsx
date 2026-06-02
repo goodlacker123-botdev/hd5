@@ -119,8 +119,12 @@ const Index = () => {
 
           {/* Like-driven progress (hidden until enabled) */}
           {likeFeatureLive && (
-            <div
-              className="text-center font-serif px-6 py-4 rounded-lg backdrop-blur-sm border max-w-2xl"
+            <a
+              href="https://www.youtube.com/watch?v=V_0mVSO4faM"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="The Audience Decides — watch the video on YouTube"
+              className="text-center font-serif px-6 py-4 rounded-lg backdrop-blur-sm border max-w-2xl block transition-all duration-300 hover:scale-[1.02] cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--accent))]"
               style={{
                 background: 'hsl(var(--card) / 0.5)',
                 borderColor: 'hsl(var(--accent) / 0.4)',
@@ -138,7 +142,7 @@ const Index = () => {
                 Every like on the video pulls the curtain 1 hour sooner.
                 {flooredOut && ' (Floor reached — 3 days is the minimum.)'}
               </div>
-            </div>
+            </a>
           )}
 
 
