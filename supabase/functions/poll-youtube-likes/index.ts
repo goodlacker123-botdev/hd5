@@ -47,9 +47,8 @@ Deno.serve(async (req) => {
     const stats = ytData.items?.[0]?.statistics;
     if (!stats) throw new Error('No statistics returned for video');
 
-    const liveLikes = parseInt(stats.likeCount ?? '0', 10);
-    // Ratchet: never decrease like count (avoid timer moving back if users unlike)
-    const likeCount = Math.max(liveLikes, state.like_count);
+    // Tie hours directly to current like count (no ratchet — unlikes restore time)
+    const likeCount = parseInt(stats.likeCount ?? '0', 10);
 
     const originalTargetMs = new Date(state.original_target).getTime();
     const reducedMs = originalTargetMs - likeCount * state.seconds_per_like * 1000;
