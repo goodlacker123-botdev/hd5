@@ -142,6 +142,9 @@ const Index = () => {
                 Every like on the video pulls the curtain 1 hour sooner.
                 {flooredOut && ' (Floor reached — 3 days is the minimum.)'}
               </div>
+              <div className="text-[10px] md:text-xs mt-1 opacity-60 italic">
+                Counts refresh every minute.
+              </div>
             </a>
           )}
 
