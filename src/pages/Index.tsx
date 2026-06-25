@@ -86,7 +86,7 @@ const Index = () => {
             </div>
             <div className="text-base md:text-lg">
               <span style={{ color: 'hsl(var(--accent))' }}>❤ {FINAL_LIKES.toLocaleString()}</span>{' '}
-              {FINAL_LIKES === 1 ? 'like' : 'likes'} on Fall From Fame ·{' '}
+              {FINAL_LIKES === 1 ? 'like' : 'likes'} on the message from the star ·{' '}
               <span style={{ color: 'hsl(var(--accent))' }}>{HOURS_REMOVED.toLocaleString()} {HOURS_REMOVED === 1 ? 'hour' : 'hours'}</span> shaved off
             </div>
             <div className="text-xs md:text-sm mt-2 opacity-75">
