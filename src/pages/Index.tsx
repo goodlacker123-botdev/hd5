@@ -1,68 +1,19 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback } from "react";
 import Countdown from "@/components/Countdown";
 import CurtainReveal from "@/components/CurtainReveal";
 import closedCurtainsImg from "@/assets/closed-curtains.jpg";
-import { supabase } from "@/integrations/supabase/client";
 
-const FALLBACK_TARGET = new Date('2026-06-26T00:00:00-04:00');
+// Countdown locked at the final time after the audience-decides phase ended.
+const TARGET_DATE = new Date('2026-06-28T01:00:01Z');
 const VIS_URL = 'https://youtu.be/PLACEHOLDER';
 
-// Like-driven countdown goes live June 1, 2026 at 12:00 AM ET.
-const FEATURE_START = new Date('2026-06-01T00:00:00-04:00');
+// Final tally from the like-driven phase
+const FINAL_LIKES = 1;
+const HOURS_REMOVED = 1;
 
 const Index = () => {
   const [showCurtain, setShowCurtain] = useState(false);
-  const [targetDate, setTargetDate] = useState<Date>(FALLBACK_TARGET);
-  const [likeCount, setLikeCount] = useState<number>(0);
-  const [originalTarget, setOriginalTarget] = useState<Date>(FALLBACK_TARGET);
-  const [likeFeatureLive, setLikeFeatureLive] = useState<boolean>(
-    Date.now() >= FEATURE_START.getTime()
-  );
-
-  // Re-check feature gate every minute so it flips on without a refresh
-  useEffect(() => {
-    if (likeFeatureLive) return;
-    const id = setInterval(() => {
-      if (Date.now() >= FEATURE_START.getTime()) setLikeFeatureLive(true);
-    }, 60_000);
-    return () => clearInterval(id);
-  }, [likeFeatureLive]);
-
-  useEffect(() => {
-    if (!likeFeatureLive) return;
-
-    const applyRow = (row: any) => {
-      if (!row) return;
-      if (row.effective_target) setTargetDate(new Date(row.effective_target));
-      if (row.original_target) setOriginalTarget(new Date(row.original_target));
-      if (typeof row.like_count === 'number') setLikeCount(row.like_count);
-    };
-
-    supabase
-      .from('countdown_state')
-      .select('*')
-      .eq('id', 1)
-      .single()
-      .then(({ data }) => applyRow(data));
-
-    const channel = supabase
-      .channel('countdown_state_changes')
-      .on(
-        'postgres_changes',
-        { event: '*', schema: 'public', table: 'countdown_state' },
-        (payload) => applyRow(payload.new)
-      )
-      .subscribe();
-
-    return () => {
-      supabase.removeChannel(channel);
-    };
-  }, [likeFeatureLive]);
-
-  const hoursUnlocked = likeCount;
-  const originalMs = originalTarget.getTime();
-  const effectiveMs = targetDate.getTime();
-  const flooredOut = effectiveMs > originalMs - hoursUnlocked * 3600 * 1000 + 1000;
+  const targetDate = TARGET_DATE;
 
   const handleCountdownComplete = useCallback(() => {
     setShowCurtain(true);
