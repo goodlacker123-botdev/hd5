@@ -1,6 +1,5 @@
-import { useState, useCallback } from "react";
+import { useCallback } from "react";
 import Countdown from "@/components/Countdown";
-import CurtainReveal from "@/components/CurtainReveal";
 import closedCurtainsImg from "@/assets/closed-curtains.jpg";
 
 // Countdown locked at the final time after the audience-decides phase ended.
@@ -12,20 +11,14 @@ const FINAL_LIKES = 1;
 const HOURS_REMOVED = 1;
 
 const Index = () => {
-  const [showCurtain, setShowCurtain] = useState(false);
   const targetDate = TARGET_DATE;
 
   const handleCountdownComplete = useCallback(() => {
-    setShowCurtain(true);
-  }, []);
-
-  const handleCurtainComplete = useCallback(() => {
     window.location.href = VIS_URL;
   }, []);
 
   return (
     <div className="min-h-screen relative overflow-hidden">
-      {showCurtain && <CurtainReveal onComplete={handleCurtainComplete} />}
 
       {/* Closed-curtain backdrop */}
       <div className="absolute inset-0">
