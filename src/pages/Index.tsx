@@ -5,7 +5,7 @@ import closedCurtainsImg from "@/assets/closed-curtains.jpg";
 
 // Countdown locked at the final time after the audience-decides phase ended.
 const TARGET_DATE = new Date('2026-06-26T03:00:00Z');
-const VIS_URL = 'https://youtu.be/PLACEHOLDER';
+const VIS_URL = 'https://youtu.be/G8wQ9ra79UI';
 
 // Final tally from the like-driven phase
 const FINAL_LIKES = 1;
