@@ -1,2 +1,5 @@
 project_id = "ifiprzaqxeneydnavyjf"
 
+
+[functions.reveal-embed]
+verify_jwt = false
