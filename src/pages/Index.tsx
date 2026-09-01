@@ -7,9 +7,6 @@ import closedCurtainsImg from "@/assets/closed-curtains.jpg";
 // September 14, 2026 at 8:00 PM ET
 const TARGET_DATE = new Date('2026-09-15T00:00:00Z');
 
-// Final tally from the like-driven phase
-const FINAL_LIKES = 1;
-const HOURS_REMOVED = 1;
 
 interface RevealData {
   url: string;
@@ -141,31 +138,6 @@ const Index = () => {
         <main className="flex-1 flex flex-col items-center justify-center px-4 pb-16 gap-8">
           {targetDate && <Countdown targetDate={targetDate} onComplete={handleCountdownComplete} />}
 
-          {/* Final tally from the audience-decides phase */}
-          <a
-            href="https://youtube.com/shorts/bOhIfi8WMn8"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="The Audience Decided — watch the video on YouTube"
-            className="text-center font-serif px-6 py-4 rounded-lg backdrop-blur-sm border max-w-2xl block transition-all duration-300 hover:scale-[1.02] cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--accent))]"
-            style={{
-              background: 'hsl(var(--card) / 0.5)',
-              borderColor: 'hsl(var(--accent) / 0.4)',
-              color: 'hsl(var(--muted-foreground))',
-            }}
-          >
-            <div className="text-sm md:text-base tracking-wider uppercase mb-2" style={{ color: 'hsl(var(--accent))' }}>
-              ✦ The Audience Decided ✦
-            </div>
-            <div className="text-base md:text-lg">
-              <span style={{ color: 'hsl(var(--accent))' }}>❤ {FINAL_LIKES.toLocaleString()}</span>{' '}
-              {FINAL_LIKES === 1 ? 'like' : 'likes'} on the message from the star ·{' '}
-              <span style={{ color: 'hsl(var(--accent))' }}>{HOURS_REMOVED.toLocaleString()} {HOURS_REMOVED === 1 ? 'hour' : 'hours'}</span> shaved off
-            </div>
-            <div className="text-xs md:text-sm mt-2 opacity-75">
-              The curtain is locked. The wait ends as written.
-            </div>
-          </a>
 
 
 
