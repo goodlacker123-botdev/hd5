@@ -61,12 +61,14 @@ const Index = () => {
     return (
       <div className="min-h-screen relative overflow-hidden">
         <div className="absolute inset-0">
-          <img
-            src={closedCurtainsImg}
-            alt="Red velvet theater curtains with gold valance"
+          <video
+            src={backgroundVideo.url}
+            poster={closedCurtainsImg}
+            autoPlay
+            loop
+            muted
+            playsInline
             className="absolute inset-0 w-full h-full object-cover"
-            width={1920}
-            height={1080}
           />
           <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/80 to-background/90" />
         </div>
