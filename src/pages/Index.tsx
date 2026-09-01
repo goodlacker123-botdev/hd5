@@ -189,7 +189,24 @@ const Index = () => {
             Stream The Death of a Star (album)
           </a>
 
+          {/* Watch The Death of a Star visualizer */}
+          <a
+            href="https://www.youtube.com/watch?v=G8wQ9ra79UI&feature=youtu.be"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-8 py-4 text-lg font-serif tracking-wider uppercase transition-all duration-300 hover:scale-105 rounded-lg"
+            style={{
+              background: 'linear-gradient(135deg, hsl(var(--theater-red)) 0%, hsl(var(--theater-gold)) 100%)',
+              color: 'hsl(var(--primary-foreground))',
+              boxShadow: '0 4px 20px hsl(var(--theater-red) / 0.4)',
+              textShadow: '0 2px 8px rgba(0,0,0,0.6)',
+            }}
+          >
+            Watch The Death of a Star (Official Visualizer)
+          </a>
+
           {/* Social Media Links */}
+
           <div className="flex flex-wrap justify-center gap-3 sm:gap-4 max-w-xs sm:max-w-none">
             <a
               href="https://open.spotify.com/artist/2KkUezJZiTh9ooy5Fuzv3B"
