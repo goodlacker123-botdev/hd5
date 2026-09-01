@@ -1,21 +1,101 @@
-import { useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Countdown from "@/components/Countdown";
+import TunegoodyEmbed from "@/components/TunegoodyEmbed";
+import { supabase } from "@/integrations/supabase/client";
 import closedCurtainsImg from "@/assets/closed-curtains.jpg";
 
-// Countdown locked at the final time after the audience-decides phase ended.
-const TARGET_DATE = new Date('2026-06-26T03:00:00Z');
-const VIS_URL = 'https://youtu.be/G8wQ9ra79UI';
+// September 14, 2026 at 8:00 PM ET
+const TARGET_DATE = new Date('2026-09-15T00:00:00Z');
 
 // Final tally from the like-driven phase
 const FINAL_LIKES = 1;
 const HOURS_REMOVED = 1;
 
+interface RevealData {
+  url: string;
+  title: string;
+  origin: string;
+  minHeight: number;
+}
+
 const Index = () => {
   const targetDate = TARGET_DATE;
+  const [reveal, setReveal] = useState<RevealData | null>(null);
+  const [checking, setChecking] = useState(false);
+
+  const fetchReveal = useCallback(async () => {
+    try {
+      const { data } = await supabase.functions.invoke('reveal-embed');
+      if (data?.revealed && data?.url) {
+        setReveal({
+          url: data.url,
+          title: data.title,
+          origin: data.origin,
+          minHeight: data.minHeight ?? 760,
+        });
+        return true;
+      }
+    } catch {
+      /* stay closed */
+    }
+    return false;
+  }, []);
+
+  // If the target has already passed on load, reveal right away.
+  useEffect(() => {
+    if (Date.now() >= targetDate.getTime()) {
+      void fetchReveal();
+    }
+  }, [targetDate, fetchReveal]);
 
   const handleCountdownComplete = useCallback(() => {
-    window.location.href = VIS_URL;
-  }, []);
+    if (checking) return;
+    setChecking(true);
+    void fetchReveal().then((ok) => {
+      if (!ok) {
+        // Server says not yet — try again shortly.
+        setTimeout(() => setChecking(false), 5000);
+      }
+    });
+  }, [checking, fetchReveal]);
+
+  if (reveal) {
+    return (
+      <div className="min-h-screen relative overflow-hidden">
+        <div className="absolute inset-0">
+          <img
+            src={closedCurtainsImg}
+            alt="Red velvet theater curtains with gold valance"
+            className="absolute inset-0 w-full h-full object-cover"
+            width={1920}
+            height={1080}
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/80 to-background/90" />
+        </div>
+        <div className="relative z-10 min-h-screen flex flex-col items-center justify-center px-4 py-10">
+          <h1
+            className="text-3xl sm:text-4xl md:text-5xl font-bold font-serif tracking-wider text-center mb-8"
+            style={{
+              background: 'linear-gradient(135deg, hsl(var(--accent)) 0%, hsl(var(--primary-foreground)) 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+            }}
+          >
+            The Death of a Star — The Final Bow Edition
+          </h1>
+          <div className="w-full max-w-3xl">
+            <TunegoodyEmbed
+              src={reveal.url}
+              title={reveal.title}
+              origin={reveal.origin}
+              minHeight={reveal.minHeight}
+            />
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen relative overflow-hidden">
