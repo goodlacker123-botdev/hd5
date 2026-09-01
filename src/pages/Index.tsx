@@ -3,6 +3,7 @@ import Countdown from "@/components/Countdown";
 import TunegoodyEmbed from "@/components/TunegoodyEmbed";
 import { supabase } from "@/integrations/supabase/client";
 import closedCurtainsImg from "@/assets/closed-curtains.jpg";
+import backgroundVideo from "@/assets/background.mp4.asset.json";
 
 // September 14, 2026 at 8:00 PM ET
 const TARGET_DATE = new Date('2026-09-15T00:00:00Z');
