@@ -129,13 +129,13 @@ const Index = () => {
               textShadow: '0 0 40px hsl(var(--accent) / 0.3)',
             }}
           >
-            The Spotlight Has a Price...
+            The Dust Hasn't Settled Yet...
           </h1>
           <div
             className="mt-4 text-base sm:text-lg md:text-xl lg:text-2xl font-serif tracking-widest px-4"
             style={{ color: 'hsl(var(--muted-foreground))' }}
           >
-            ✦ INTERMISSION ENDING SOON ✦
+            ✦ SOMETHING STIRS BENEATH THE ASHES ✦
           </div>
         </header>
 
